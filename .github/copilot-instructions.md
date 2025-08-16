@@ -115,8 +115,13 @@ chortle/
 ### Common Operations
 
 **Adding new features:**
-- Edit `public/main.js` for new functionality
-- Use VanJS patterns (reactive components, van.tags)
+- For simple features: Edit `public/main.js` directly
+- For complex features: Create new modules to compartmentalize code
+  - Create new `.js` files in `public/` directory (e.g., `public/chore-manager.js`, `public/chart-display.js`)
+  - Use ES6 module exports: `export { functionName, ComponentName }`
+  - Import modules in `main.js`: `import { functionName } from './chore-manager.js'`
+  - Follow naming convention: kebab-case for files, camelCase for functions/components
+- Use VanJS patterns (reactive components, van.tags) in all modules
 - Add custom styles to `public/main.css` if needed
 
 **Modifying styles:**
@@ -132,6 +137,7 @@ chortle/
 
 ### File Locations Quick Reference
 - **Main app**: `public/main.js`
+- **Feature modules**: `public/[feature-name].js` (e.g., `public/chore-manager.js`)
 - **HTML template**: `public/index.html`
 - **Custom styles**: `public/main.css`
 - **Documentation**: `README.md`
