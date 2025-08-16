@@ -135,6 +135,10 @@ chortle/
 - Verify functionality works as expected
 - Test on different screen sizes (Water.css is responsive)
 
+**Writing Documentation:**
+- Write and edit documents in markdown format
+- Save new files to the `docs/` folder
+
 ### File Locations Quick Reference
 - **Main app**: `public/main.js`
 - **Feature modules**: `public/[feature-name].js` (e.g., `public/chore-manager.js`)
