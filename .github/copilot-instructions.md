@@ -67,7 +67,7 @@ npx http-server -p 8080 -c-1 .
 ```
 chortle/
 ├── .github/           # GitHub configuration (currently minimal)
-├── docs/              # Empty placeholder directory
+├── docs/              # Project management documentation
 ├── public/            # Web application source files
 │   ├── index.html     # Main HTML entry point
 │   ├── main.js        # Main JavaScript application file
@@ -144,7 +144,7 @@ chortle/
 - **Feature modules**: `public/[feature-name].js` (e.g., `public/chore-manager.js`)
 - **HTML template**: `public/index.html`
 - **Custom styles**: `public/main.css`
-- **Documentation**: `README.md`
+- **Development documentation**: `README.md`
 - **Serve directory**: `public/` (this is the web root)
 
 ### Avoiding Common Pitfalls
