@@ -67,29 +67,29 @@ npx http-server -p 8080 -c-1 .
 ```
 chortle/
 ├── .github/           # GitHub configuration (currently minimal)
-├── docs/              # Project management documentation
-├── public/            # Web application source files
+├── docs/              # Web application source files (deployment directory)
 │   ├── index.html     # Main HTML entry point
 │   ├── main.js        # Main JavaScript application file
 │   └── main.css       # Custom styles (minimal - mostly uses Water.css)
+├── planning/          # Project management documentation
 ├── LICENSE            # MIT license
 └── README.md          # Development instructions
 ```
 
 ### Key Files
 
-**`public/index.html`** - Main entry point:
+**`docs/index.html`** - Main entry point:
 - Links to Water.css CDN for base styling
 - Links to local main.css for custom styles
 - Loads main.js as ES6 module
 - Contains minimal HTML structure (VanJS renders content dynamically)
 
-**`public/main.js`** - Application logic:
+**`docs/main.js`** - Application logic:
 - Imports VanJS from CDN (van-1.5.5.min.js)
 - Currently displays a simple welcome message
 - Uses VanJS reactive components for DOM manipulation
 
-**`public/main.css`** - Custom styling:
+**`docs/main.css`** - Custom styling:
 - Currently minimal (contains only "1.")
 - Water.css provides the base styling
 - Add custom overrides here as needed
@@ -140,17 +140,18 @@ chortle/
 - Save new files to the `docs/` folder
 
 ### File Locations Quick Reference
-- **Main app**: `public/main.js`
-- **Feature modules**: `public/[feature-name].js` (e.g., `public/chore-manager.js`)
-- **HTML template**: `public/index.html`
-- **Custom styles**: `public/main.css`
+- **Main app**: `docs/main.js`
+- **Feature modules**: `docs/[feature-name].js` (e.g., `docs/chore-manager.js`)
+- **HTML template**: `docs/index.html`
+- **Custom styles**: `docs/main.css`
+- **Project management documentation**: `planning/`
 - **Development documentation**: `README.md`
-- **Serve directory**: `public/` (this is the web root)
+- **Serve directory**: `docs/` (this is the web root)
 
 ### Avoiding Common Pitfalls
 1. **Don't add a build process** - the simplicity is intentional
 2. **Don't install local npm packages** - use CDN dependencies
-3. **Always serve from public/ directory** - not from repository root
+3. **Always serve from docs/ directory** - not from repository root
 4. **Check CDN availability** - ensure external dependencies load
 5. **Test without cache** - use `-c-1` flag to avoid stale resources
 
