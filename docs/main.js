@@ -1,7 +1,16 @@
-import van from "https://cdn.jsdelivr.net/gh/vanjs-org/van/public/van-1.5.5.min.js"
+import routes from './routes.js'
 
-const { div } = van.tags
+const content = van.state(() => "")
 
-const app = div("Welcome to chortle")
+function renderRoute() {
+    const hash = location.hash.substring(1)
+    content.val = routes[hash] || routes.notFound
+}
 
-van.add(document.body, app)
+function start() {
+    van.add(document.body, () => content.val())
+    renderRoute();
+}
+
+window.addEventListener('hashchange', renderRoute)
+window.addEventListener('DOMContentLoaded', start)
