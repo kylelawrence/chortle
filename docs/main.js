@@ -15,14 +15,8 @@ async function start() {
     renderRoute()
 }
 
-function handleError(event) {
-    errors.log({
-        message: event.message,
-        source: event.filename,
-        lineno: event.lineno,
-        colno: event.colno,
-        error: event.error
-    })
+function handleError(error) {
+    errors.log(error)
 }
 
 window.addEventListener('hashchange', renderRoute)

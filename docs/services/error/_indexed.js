@@ -35,7 +35,16 @@ function log(error) {
     try {
         const transaction = db.transaction('errors', 'readwrite')
         const store = transaction.objectStore('errors')
-        store.add({ error, timestamp: new Date() })
+        store.add({
+            error: {
+                message: error.message,
+                source: error.filename,
+                lineno: error.lineno,
+                colno: error.colno,
+                error: error.error
+            },
+            timestamp: new Date()
+        })
     } catch {
         // Ignore add errors, because this is what catches them
     }
