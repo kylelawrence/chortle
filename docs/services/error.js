@@ -1,7 +1,7 @@
 import db from './error/_indexed.js'
 
-function init() {
-    db.init()
+async function init() {
+    await db.init()
 }
 
 function log(error) {

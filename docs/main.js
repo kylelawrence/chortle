@@ -8,8 +8,8 @@ function renderRoute() {
     content.val = routes[hash] || routes.notFound
 }
 
-function start() {
-    errors.init()
+async function start() {
+    await errors.init()
 
     van.add(document.body, () => content.val())
     renderRoute()
