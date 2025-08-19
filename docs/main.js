@@ -9,10 +9,10 @@ function renderRoute() {
 }
 
 function start() {
-    errors.init();
+    errors.init()
 
     van.add(document.body, () => content.val())
-    renderRoute();
+    renderRoute()
 }
 
 function handleError(event) {
@@ -22,9 +22,9 @@ function handleError(event) {
         lineno: event.lineno,
         colno: event.colno,
         error: event.error
-    });
+    })
 }
 
 window.addEventListener('hashchange', renderRoute)
 window.addEventListener('DOMContentLoaded', start)
-window.addEventListener('error', handleError);
+window.addEventListener('error', handleError)

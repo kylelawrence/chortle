@@ -1,71 +1,58 @@
-let db;
+let db
 
 function isNotReady() {
     if (!db) {
-        console.error('IndexedDB is not initialized. Call init() first.');
-        return true;
+        console.error('IndexedDB is not initialized. Call init() first.')
+        return true
     }
-    return false;
+    return false
 }
 
 function init() {
-    const request = indexedDB.open('errorDB', 1);
-
-    request.onupgradeneeded = (event) => {
-        db = event.target.result;
-        db.createObjectStore('errors', { keyPath: 'id', autoIncrement: true });
-    };
-
-    request.onsuccess = (event) => {
-        db = event.target.result;
-    };
-
-    request.onerror = (event) => {
-        console.error('IndexedDB error:', event.target.error);
     return new Promise((resolve, reject) => {
-        const request = indexedDB.open('errorDB', 1);
+        const request = indexedDB.open('errorDB', 1)
 
         request.onupgradeneeded = (event) => {
-            db = event.target.result;
-            db.createObjectStore('errors', { keyPath: 'id', autoIncrement: true });
-        };
+            db = event.target.result
+            db.createObjectStore('errors', { keyPath: 'id', autoIncrement: true })
+        }
 
         request.onsuccess = (event) => {
-            db = event.target.result;
-            resolve();
-        };
+            db = event.target.result
+            resolve()
+        }
 
         request.onerror = (event) => {
-            console.error('IndexedDB error:', event.target.error);
-            reject(event.target.error);
-        };
-    });
+            console.error('IndexedDB error:', event.target.error)
+            reject(event.target.error)
+        }
+    })
 }
 
 function log(error) {
-    if (isNotReady()) return;
+    if (isNotReady()) return
 
-    const transaction = db.transaction('errors', 'readwrite');
-    const store = transaction.objectStore('errors');
-    store.add({ error, timestamp: new Date() });
+    const transaction = db.transaction('errors', 'readwrite')
+    const store = transaction.objectStore('errors')
+    store.add({ error, timestamp: new Date() })
 }
 
 function clear() {
     return new Promise((resolve, reject) => {
-        if (isNotReady()) return reject(new Error('IndexedDB is not initialized'));
+        if (isNotReady()) return reject(new Error('IndexedDB is not initialized'))
 
-        const transaction = db.transaction('errors', 'readwrite');
-        const store = transaction.objectStore('errors');
-        const request = store.clear();
+        const transaction = db.transaction('errors', 'readwrite')
+        const store = transaction.objectStore('errors')
+        const request = store.clear()
 
         request.onsuccess = () => {
-            resolve('All errors cleared from IndexedDB.');
-        };
+            resolve('All errors cleared from IndexedDB.')
+        }
 
         request.onerror = (event) => {
-            reject(event.target.error);
-        };
-    });
+            reject(event.target.error)
+        }
+    })
 }
 
 export default {
