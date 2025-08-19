@@ -35,7 +35,7 @@ function log(error) {
 
 function clear() {
     return new Promise((resolve, reject) => {
-        if (isNotReady()) return;
+        if (isNotReady()) return reject(new Error('IndexedDB is not initialized'));
 
         const transaction = db.transaction('errors', 'readwrite');
         const store = transaction.objectStore('errors');
