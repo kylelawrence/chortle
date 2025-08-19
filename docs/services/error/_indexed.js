@@ -22,7 +22,24 @@ function init() {
 
     request.onerror = (event) => {
         console.error('IndexedDB error:', event.target.error);
-    };
+    return new Promise((resolve, reject) => {
+        const request = indexedDB.open('errorDB', 1);
+
+        request.onupgradeneeded = (event) => {
+            db = event.target.result;
+            db.createObjectStore('errors', { keyPath: 'id', autoIncrement: true });
+        };
+
+        request.onsuccess = (event) => {
+            db = event.target.result;
+            resolve();
+        };
+
+        request.onerror = (event) => {
+            console.error('IndexedDB error:', event.target.error);
+            reject(event.target.error);
+        };
+    });
 }
 
 function log(error) {
