@@ -32,9 +32,13 @@ function init() {
 function log(error) {
     if (isNotReady()) return
 
-    const transaction = db.transaction('errors', 'readwrite')
-    const store = transaction.objectStore('errors')
-    store.add({ error, timestamp: new Date() })
+    try {
+        const transaction = db.transaction('errors', 'readwrite')
+        const store = transaction.objectStore('errors')
+        store.add({ error, timestamp: new Date() })
+    } catch {
+        // Ignore add errors, because this is what catches them
+    }
 }
 
 function clear() {
