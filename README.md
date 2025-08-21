@@ -16,19 +16,13 @@ You can serve locally however you wish, but I recommend:
 npx live-server
 ```
 
-| Option | Description                |
-| ------ | -------------------------- |
-| -o     | open browser when starting |
-| -c-1   | no caching of resources    |
-| -s     | silent, no logs.           |
-
 I recommend you add an alias to your shell RC file:
 
 ```sh
 alias serve="npx live-server"
 ```
 
-Then you can just run `serve` from the docs directory
+Then you can just run `serve docs` from the root directory or `serve` from the docs directory
 
 
 ## Dependencies
