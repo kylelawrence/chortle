@@ -70,7 +70,11 @@ chortle/
 ├── docs/              # Web application source files (deployment directory)
 │   ├── index.html     # Main HTML entry point
 │   ├── main.js        # Main JavaScript application file
-│   └── main.css       # Custom styles (minimal - mostly uses Water.css)
+│   ├── main.css       # Custom styles (minimal - mostly uses Water.css)
+│   ├── routes.js      # Application routing
+│   ├── pages/         # VanJS page components
+│   ├── parts/         # Reusable UI components
+│   └── services/      # Reusable services
 ├── planning/          # Project management documentation
 ├── LICENSE            # MIT license
 └── README.md          # Development instructions

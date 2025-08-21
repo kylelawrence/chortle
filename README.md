@@ -13,7 +13,7 @@ No build step required.
 You can serve locally however you wish, but I recommend:
 
 ```sh
-npx http-server -o -c-1 -s public
+npx live-server
 ```
 
 | Option | Description                |
@@ -25,10 +25,10 @@ npx http-server -o -c-1 -s public
 I recommend you add an alias to your shell RC file:
 
 ```sh
-alias serve="npx http-server -o -c-1 -s"
+alias serve="npx live-server"
 ```
 
-Then you can just run `serve public` from the root directory
+Then you can just run `serve` from the docs directory
 
 
 ## Dependencies
