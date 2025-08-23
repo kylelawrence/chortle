@@ -24,7 +24,7 @@ function show(content: any) {
 	dialog.showModal()
 }
 
-function close() {
+function hide() {
 	dialog.close()
 	dialogContent.val = ''
 }
