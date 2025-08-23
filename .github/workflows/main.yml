@@ -20,11 +20,13 @@ jobs:
 
       - name: Install dependencies with Yarn
         run: yarn install
-
+          
       - name: Build with Vite
         run: yarn build
 
       - name: Commit docs folder
+        env:
+          TOKEN: ${{ secrets.ACTIONS }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
