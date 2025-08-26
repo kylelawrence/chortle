@@ -1,0 +1,9 @@
+.inputSelect {
+  display: flex;
+  align-items: center;
+}
+
+.inputSelect > input {
+  width: 30px;
+  text-align: center;
+}

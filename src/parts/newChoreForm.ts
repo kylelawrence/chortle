@@ -1,27 +1,45 @@
 import van from 'vanjs-core'
+import type { Chore } from '../types'
 
-const { div, input, button, h3 } = van.tags
+const { div, input, button, h3, label } = van.tags
 
 interface Props {
   onDone: () => void
 }
 
 export default (props: Props) => {
-  const name = van.state('')
+  const newChore = van.state<Chore>({
+    name: `Test${Math.floor(Math.random() * 100000000)}`,
+    long: 'Test description',
+    estimate: '1 hour',
+    bonus: '5',
+    frequency: 'weekly',
+    preferredDay: 'Monday',
+  })
 
   const handleSubmit = () => {
-    alert(`Value: ${name.val}`)
     props.onDone()
+  }
+
+  const renderInput = (desc: string, prop: keyof Chore) => {
+    return div(label(
+      desc,
+      input({
+        type: 'text',
+        value: newChore.val[prop],
+        oninput: (e) => newChore.val = { ...newChore.val, [prop]: e.data }
+      }),
+    ))
   }
 
   return div(
     h3('Let\'s make a chore'),
-    input({
-      type: 'text',
-      placeholder: 'Chore name',
-      value: name,
-      oninput: e => name.val = e.target.value,
-    }),
-    button({ onclick: handleSubmit }, 'Create')
+    renderInput('Name', 'name'),
+    renderInput('Description', 'long'),
+    renderInput('Bonus', 'bonus'),
+    renderInput('Estimate', 'estimate'),
+    renderInput('Frequency', 'frequency'),
+    renderInput('Preferred Day', 'preferredDay'),
+    button({ onclick: handleSubmit }, 'Create'),
   )
 }

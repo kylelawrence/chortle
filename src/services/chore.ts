@@ -1,5 +1,5 @@
 import db from './db'
-import type { Chore } from './types'
+import type { Chore } from '../types'
 
 const tableName = 'chores'
 
