@@ -1,4 +1,4 @@
-import { useData } from "../DataCache";
+import { useData } from "./dataCache";
 import chores from "../services/chores";
 import DataKeys from "./DataKeys";
 

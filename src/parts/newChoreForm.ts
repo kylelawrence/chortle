@@ -1,7 +1,7 @@
 import van from 'vanjs-core'
 import type { Chore } from '../types'
 import chores from '../services/chores'
-import { invalidate } from '../DataCache'
+import { invalidate } from '../data/dataCache'
 import DataKeys from '../data/DataKeys'
 
 const { div, input, button, h3, label } = van.tags
