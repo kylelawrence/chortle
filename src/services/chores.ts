@@ -14,12 +14,12 @@ function create(chore: Chore) {
   })
 }
 
-async function list(): Promise<Chore[]> {
+async function load(): Promise<Chore[]> {
   const result = await db.query(tableName)
   return result as Chore[]
 }
 
 export default {
   create,
-  list,
+  load,
 }

@@ -12,6 +12,8 @@ function log(error: ErrorEvent) {
 			error: error.error
 		},
 		timestamp: new Date()
+	}).catch(() => {
+		// Do nothing, as we dont want to catch error storing errors
 	})
 }
 

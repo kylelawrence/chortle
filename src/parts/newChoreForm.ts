@@ -1,5 +1,8 @@
 import van from 'vanjs-core'
 import type { Chore } from '../types'
+import chores from '../services/chores'
+import { invalidate } from '../DataCache'
+import DataKeys from '../data/DataKeys'
 
 const { div, input, button, h3, label } = van.tags
 
@@ -18,6 +21,8 @@ export default (props: Props) => {
   })
 
   const handleSubmit = () => {
+    chores.create(newChore.val)
+    invalidate(DataKeys.chores)
     props.onDone()
   }
 

@@ -1,7 +1,7 @@
 import van from 'vanjs-core'
 import routes from './routes'
 import db from './services/db'
-import errors from './services/error'
+import errors from './services/errors'
 
 const content = van.state(() => '')
 

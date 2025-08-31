@@ -1,14 +1,5 @@
 let db: IDBDatabase | null = null
 
-function isNotReady() {
-  if (!db) {
-    console.error('IndexedDB is not initialized. Call init() first.')
-    return true
-  }
-
-  return false
-}
-
 function init() {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open('chortle', 1)
@@ -22,7 +13,7 @@ function init() {
 
     request.onsuccess = (event) => {
       db = (event.target as IDBOpenDBRequest).result
-      resolve({})
+      resolve(true)
     }
 
     request.onerror = (event) => {
@@ -32,43 +23,13 @@ function init() {
   })
 }
 
-function store(table: string, item: any) {
-  if (isNotReady()) return
-
-  try {
-    const transaction = db!.transaction(table, 'readwrite')
-    const store = transaction.objectStore(table)
-    store.add(item)
-  } catch {
-    // Ignore add errors, because this is what catches them
-  }
-}
-
-function clear(table: string) {
+function transact(table: string, act: (store: IDBObjectStore) => IDBRequest) {
   return new Promise((resolve, reject) => {
-    if (isNotReady()) return reject(new Error('IndexedDB is not initialized'))
+    if (!db) return reject(new Error('IndexedDB is not initialized'))
 
     const transaction = db!.transaction(table, 'readwrite')
     const store = transaction.objectStore(table)
-    const request = store.clear()
-
-    request.onsuccess = () => {
-      resolve('All errors cleared from IndexedDB.')
-    }
-
-    request.onerror = (event) => {
-      reject((event.target as any).error)
-    }
-  })
-}
-
-function query(table: string) {
-  if (isNotReady()) return Promise.resolve([])
-
-  return new Promise((resolve, reject) => {
-    const transaction = db!.transaction(table, 'readonly')
-    const store = transaction.objectStore(table)
-    const request = store.getAll()
+    const request = act(store)
 
     request.onsuccess = () => {
       resolve(request.result)
@@ -80,12 +41,28 @@ function query(table: string) {
   })
 }
 
+function store(table: string, item: any) {
+  return transact(table, (store) => store.add(item))
+}
+
+function clear(table: string) {
+  return transact(table, (store) => store.clear())
+}
+
+function query(table: string) {
+  return transact(table, (store) => store.getAll())
+}
+
+function remove(table: string, item: any) {
+  return transact(table, (store) => store.delete(item))
+}
+
 export {
-  isNotReady,
   init,
   store,
   clear,
   query,
+  remove,
 }
 
 export default db
