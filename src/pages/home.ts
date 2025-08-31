@@ -7,11 +7,7 @@ const { h1, div, button } = van.tags
 
 export default () => {
 	const handleCreateClick = async () => {
-		modal.show(newChoreForm({
-			onDone: () => {
-				modal.hide()
-			}
-		}))
+		modal.show(newChoreForm({ onDone: modal.hide }))
 	}
 
 	return div(

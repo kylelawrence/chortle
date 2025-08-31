@@ -10,7 +10,7 @@ interface Props {
   onDone: () => void
 }
 
-export default (props: Props) => {
+export default ({ onDone }: Props) => {
   const newChore = van.state<Chore>({
     name: `Test${Math.floor(Math.random() * 100000000)}`,
     long: 'Test description',
@@ -23,7 +23,7 @@ export default (props: Props) => {
   const handleSubmit = () => {
     chores.create(newChore.val)
     invalidate(DataKeys.chores)
-    props.onDone()
+    onDone()
   }
 
   const renderInput = (desc: string, prop: keyof Chore) => {
