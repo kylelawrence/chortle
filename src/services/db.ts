@@ -1,8 +1,9 @@
-import { init, store, clear, query } from './db/_indexed'
+import { init, store, clear, query, remove } from './db/_indexed'
 
 export default {
   init,
   store,
   clear,
   query,
+  remove,
 }

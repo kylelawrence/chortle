@@ -1,10 +1,9 @@
 import db from './db'
 import type { Chore } from '../types'
+import DataKeys from '../data/DataKeys'
 
-const tableName = 'chores'
-
-function create(chore: Chore) {
-  db.store(tableName, {
+async function create(chore: Chore) {
+  await db.store(DataKeys.chores, {
     name: chore.name,
     long: chore.long,
     estimate: chore.estimate,
@@ -14,12 +13,12 @@ function create(chore: Chore) {
   })
 }
 
-async function load(): Promise<Chore[]> {
-  const result = await db.query(tableName)
+async function list(): Promise<Chore[]> {
+  const result = await db.query(DataKeys.chores)
   return result as Chore[]
 }
 
 export default {
   create,
-  load,
+  list,
 }

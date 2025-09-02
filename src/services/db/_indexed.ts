@@ -9,6 +9,7 @@ function init() {
 
       db.createObjectStore('errors', { keyPath: 'id', autoIncrement: true })
       db.createObjectStore('chores', { keyPath: 'name' })
+      db.createObjectStore('family', { keyPath: 'name' })
     }
 
     request.onsuccess = (event) => {
@@ -53,8 +54,8 @@ function query(table: string) {
   return transact(table, (store) => store.getAll())
 }
 
-function remove(table: string, item: any) {
-  return transact(table, (store) => store.delete(item))
+function remove(table: string, key: string) {
+  return transact(table, (store) => store.delete(key))
 }
 
 export {

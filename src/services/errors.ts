@@ -1,9 +1,8 @@
+import DataKeys from '../data/DataKeys'
 import db from './db'
 
-const tableName = 'errors'
-
 function log(error: ErrorEvent) {
-	db.store(tableName, {
+	db.store(DataKeys.errors, {
 		error: {
 			message: error.message,
 			source: error.filename,

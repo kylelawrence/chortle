@@ -1,7 +1,7 @@
 import van from 'vanjs-core'
-import modal from '../bits/modal'
-import newChoreForm from '../parts/newChoreForm'
-import choreList from '../parts/choreList'
+import modal from '../bits/Modal'
+import newChoreForm from '../parts/NewChoreForm'
+import choreList from '../parts/ChoreList'
 
 const { h1, div, button } = van.tags
 

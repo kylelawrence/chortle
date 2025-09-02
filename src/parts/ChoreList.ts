@@ -3,7 +3,6 @@ import useChores from '../data/useChores'
 
 const { div, h2 } = van.tags
 
-
 export default () => {
   const { loading, data } = useChores()
 
