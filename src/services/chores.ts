@@ -18,7 +18,12 @@ async function list(): Promise<Chore[]> {
   return result as Chore[]
 }
 
+async function remove(name: string) {
+  await db.remove(DataKeys.chores, name)
+}
+
 export default {
   create,
   list,
+  remove,
 }
