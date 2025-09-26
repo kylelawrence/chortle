@@ -1,0 +1,52 @@
+body {
+  /* roboto */
+  font-family: 'Roboto', sans-serif;
+  background: #333;
+  margin: 0;
+  color: white;
+}
+
+#app {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#nav {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+
+  a {
+    text-decoration: none;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+
+  a:last-child {
+    margin-top: auto;
+    margin-bottom: 0;
+  }
+}
+
+#content {
+  flex-grow: 1;
+}
+
+.inputSelect {
+  display: flex;
+  align-items: center;
+}
+
+.inputSelect>input {
+  width: 30px;
+  text-align: center;
+}
+
+.red {
+  border: solid 1px red;
+}
+
+.blue {
+  border: solid 1px blue;
+}

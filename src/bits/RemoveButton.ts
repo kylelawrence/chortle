@@ -11,8 +11,8 @@ export default ({ onRemove }: RemoveButtonProps) => {
 
   const handleClick = async () => {
     loading.val = true
-    await onRemove();
-    loading.val = false;
+    await onRemove()
+    loading.val = false
   }
 
   return button({

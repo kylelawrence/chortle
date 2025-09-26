@@ -6,3 +6,11 @@ export type Chore = {
   frequency: string
   preferredDay: string
 }
+
+export type DateDetails = {
+  dayOfWeek: string
+  dayOfMonth: number
+  sunday: Date
+  saturday: Date
+  weekLabel: string
+}
